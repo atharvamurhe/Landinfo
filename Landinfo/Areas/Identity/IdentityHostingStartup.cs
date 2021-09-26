@@ -1,5 +1,5 @@
 ﻿using System;
-using Landinfo.Data;
+using Landinfo.DAL.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;

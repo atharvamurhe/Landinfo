@@ -17,4 +17,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Landinfo.DAL\Landinfo.DAL.csproj" />
+    <ProjectReference Include="..\Landinfo.Services\Landinfo.Services.csproj" />
+  </ItemGroup>
+
 </Project>
