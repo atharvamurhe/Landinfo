@@ -1,0 +1,119 @@
+﻿@model Landinfo.DAL.Data.Model.PropertyInfo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PropertyInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UniqueId" class="control-label"></label>
+                <input asp-for="UniqueId" value="@ViewData["UniqueId"]" class="form-control" disabled/>
+                <span asp-validation-for="UniqueId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MapId" class="control-label"></label>
+                <input asp-for="MapId" class="form-control" />
+                <span asp-validation-for="MapId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rural" class="control-label"></label>
+                <input asp-for="Rural" class="form-control" />
+                <span asp-validation-for="Rural" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dls" class="control-label"></label>
+                <input asp-for="Dls" class="form-control" />
+                <span asp-validation-for="Dls" class="text-danger"></span>
+            </div>
+            <label class="font-weight-bold">Location: </label>
+            <div class="d-flex">
+                <div class="form-group ml-3">
+                    <label asp-for="LocationLat" class="control-label"></label>
+                    <input asp-for="LocationLat" class="form-control" />
+                    <span asp-validation-for="LocationLat" class="text-danger"></span>
+                </div>
+                <div class="form-group ml-3">
+                    <label asp-for="LocationLong" class="control-label"></label>
+                    <input asp-for="LocationLong" class="form-control" />
+                    <span asp-validation-for="LocationLong" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country" asp-items="Html.GetEnumSelectList<Countries>()" class="form-control">
+                    <option value="None" selected>Select counrty</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <select asp-for="State" class="form-control"></select>
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OperatingAreaId" class="control-label"></label>
+                <select asp-for="OperatingAreaId" class ="form-control" asp-items="ViewBag.OperatingAreaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FieldId" class="control-label"></label>
+                <select asp-for="FieldId" class ="form-control" asp-items="ViewBag.FieldId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PropertyId" class="control-label"></label>
+                <select asp-for="PropertyId" class ="form-control" asp-items="ViewBag.PropertyId"></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label" hidden>
+                    <input class="form-check-input" asp-for="IsActive" checked/> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label"></label>
+                <input asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedOn" class="control-label"></label>
+                <input asp-for="UpdatedOn" class="form-control" />
+                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

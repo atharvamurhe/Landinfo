@@ -82,15 +82,19 @@ namespace Landinfo.DAL.Data.Model
         [ForeignKey(nameof(PropertyId))]
         [InverseProperty("PropertyInfo")]
         public virtual Property Property { get; set; }
+
+        public bool IsActive { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime? UpdatedOn { get; set; }
     }
 
-    //Data taken from https://data.world
+    //Data taken from https://data.world/dr5hn/country-state-city
     public enum Countries
     {
-        [Display(Name = "Canada")] Canada,
-        [Display(Name = "India")] India,
-        [Display(Name = "United Kingdom")] UK,
-        [Display(Name = "United States of America")] USA
+        [Display(Name = "Canada")] Canada = 1,
+        [Display(Name = "India")] India = 2,
+        [Display(Name = "United Kingdom")] UK = 3,
+        [Display(Name = "United States of America")] USA = 4
     }
 
     public enum States

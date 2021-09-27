@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Landinfo.DAL.Migrations.LandinfoDb
 {
-    public partial class createLandTables : Migration
+    public partial class createLandTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -78,7 +79,10 @@ namespace Landinfo.DAL.Migrations.LandinfoDb
                     CompanyId = table.Column<int>(nullable: false),
                     OperatingAreaId = table.Column<int>(nullable: false),
                     FieldId = table.Column<int>(nullable: false),
-                    PropertyId = table.Column<int>(nullable: false)
+                    PropertyId = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
