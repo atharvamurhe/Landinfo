@@ -7,23 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Landinfo.DAL.Data;
 using Landinfo.DAL.Data.Model;
+using Landinfo.Services.Services;
 
 namespace Landinfo.Controllers
 {
     public class PropertyInfoesController : Controller
     {
         private readonly LandinfoDbContext _context;
+        private readonly IPropertyInfoService _propertyInfoService;
 
-        public PropertyInfoesController(LandinfoDbContext context)
+        public PropertyInfoesController(LandinfoDbContext context, IPropertyInfoService propertyInfoService)
         {
             _context = context;
+            _propertyInfoService = propertyInfoService;
         }
 
         // GET: PropertyInfoes
         public async Task<IActionResult> Index()
         {
-            var landinfoDbContext = _context.PropertyInfos.Include(p => p.Company).Include(p => p.Field).Include(p => p.OperatingArea).Include(p => p.Property);
-            return View(await landinfoDbContext.ToListAsync());
+            return View(await _propertyInfoService.GetAllPropertyInfos());
+        }
+
+        //GET method for retriving states using country id
+        public async Task<IActionResult> GetStates(int id)
+        {
+            var states = new List<State>();
+            states = await _propertyInfoService.GetStatesByCountryId(id);
+            return Json(states);
         }
 
         // GET: PropertyInfoes/Details/5
@@ -52,7 +62,7 @@ namespace Landinfo.Controllers
         public IActionResult Create()
         {
             ViewData["UniqueId"] = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
-            ViewData["CreatedOn"] = DateTime.Now;
+            ViewData["CreatedOn"] = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName");
             ViewData["FieldId"] = new SelectList(_context.Fields, "Id", "FieldName");
             ViewData["OperatingAreaId"] = new SelectList(_context.OperatingAreas, "Id", "AreaName");

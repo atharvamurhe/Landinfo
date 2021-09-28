@@ -1,4 +1,5 @@
 using Landinfo.DAL.Data;
+using Landinfo.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,8 @@ namespace Landinfo
             services.AddDbContext<LandinfoDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IPropertyInfoService, PropertyInfoService>(); //This service is required to reference the service in the whole project
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

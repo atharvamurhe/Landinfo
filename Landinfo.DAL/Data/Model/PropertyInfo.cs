@@ -91,10 +91,10 @@ namespace Landinfo.DAL.Data.Model
     //Data taken from https://data.world/dr5hn/country-state-city
     public enum Countries
     {
-        [Display(Name = "Canada")] Canada = 1,
-        [Display(Name = "India")] India = 2,
-        [Display(Name = "United Kingdom")] UK = 3,
-        [Display(Name = "United States of America")] USA = 4
+        [Display(Name = "Canada")] CA = 39,
+        [Display(Name = "India")] IN = 101,
+        [Display(Name = "United Kingdom")] GB = 232,
+        [Display(Name = "United States of America")] US = 233
     }
 
     public enum States
