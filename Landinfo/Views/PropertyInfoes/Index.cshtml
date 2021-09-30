@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.MapId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dls)
+                DLS
             </th>
             <th>
                 Location
@@ -62,7 +62,7 @@
             </td>
             <td>
                 <a asp-action="Edit" data-toggle="tooltip" data-placement="top" title="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |
-                <a asp-action="Details" data-toggle="tooltip" data-placement="top" title="Details" asp-route-id="@item.Id"><i class="bi bi-newspaper"></i></a> |
+                <a asp-action="Details" data-toggle="tooltip" data-placement="top" title="All Details" asp-route-id="@item.Id"><i class="bi bi-newspaper"></i></a> |
                 <a asp-action="Delete" data-toggle="tooltip" data-placement="top" title="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
