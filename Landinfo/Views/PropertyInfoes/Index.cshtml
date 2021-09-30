@@ -9,8 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.UniqueId)
@@ -19,16 +19,10 @@
                 @Html.DisplayNameFor(model => model.MapId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rural)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Dls)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LocationLat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationLong)
+                Location
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
@@ -39,34 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ZipCode)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OperatingArea)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Field)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Property)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedOn)
-            </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -79,16 +46,10 @@
                 @Html.DisplayFor(modelItem => item.MapId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Rural)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Dls)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LocationLat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationLong)
+                @Html.DisplayFor(modelItem => item.LocationLat) | @Html.DisplayFor(modelItem => item.LocationLong)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
@@ -100,38 +61,19 @@
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OperatingArea.AreaName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Field.FieldName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Property.PropertyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" data-toggle="tooltip" data-placement="top" title="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |
+                <a asp-action="Details" data-toggle="tooltip" data-placement="top" title="Details" asp-route-id="@item.Id"><i class="bi bi-newspaper"></i></a> |
+                <a asp-action="Delete" data-toggle="tooltip" data-placement="top" title="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts{ 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+}

@@ -15,7 +15,7 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="UniqueId" class="control-label"></label>
-                <input asp-for="UniqueId" class="form-control" />
+                <input asp-for="UniqueId" class="form-control" readonly />
                 <span asp-validation-for="UniqueId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,12 +60,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Country" class="control-label"></label>
-                <select asp-for="Country" class="form-control"></select>
+                <select id="country-dd" asp-for="Country" asp-items="Html.GetEnumSelectList<Countries>()" class="form-control">
+                    <option value="" selected disabled>Select counrty</option>
+                </select>
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="State" class="control-label"></label>
-                <select asp-for="State" class="form-control"></select>
+                <select id="state-dd" asp-for="State" asp-items="ViewBag.State" class="form-control"></select>
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -88,17 +90,17 @@
                 <select asp-for="PropertyId" class="form-control" asp-items="ViewBag.PropertyId"></select>
                 <span asp-validation-for="PropertyId" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group form-check" hidden>
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="CreatedOn" class="control-label"></label>
                 <input asp-for="CreatedOn" class="form-control" />
                 <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="UpdatedOn" class="control-label"></label>
                 <input asp-for="UpdatedOn" class="form-control" />
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
@@ -115,5 +117,31 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#country-dd").on("change", function () {
+                $list = $("#state-dd");
+                $.ajax({
+                    url: "/PropertyInfoes/GetStates",
+                    type: "GET",
+                    data: { id: $("#country-dd").val() }, //id of the country which is used to filter states.
+                    traditional: true,
+                    success: function (result) {
+                        $list.empty();
+                        $.each(result, function (i, item) {
+                            $list.append('<option value="' + item["id"] + '"> ' + item["stateName"] + ' </option>');
+                        });
+                    },
+                    error: function () {
+                        alert("Something went wrong call the police");
+                    }
+                });
+            });
+            $("form").on("reset", function () {
+                $("#state-dd").empty();
+            })
+        });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -9,109 +9,125 @@
 <h4>PropertyInfo</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row align-items-end">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="UniqueId" class="control-label"></label>
-                <input asp-for="UniqueId" value="@ViewData["UniqueId"]" class="form-control" disabled />
+                <input asp-for="UniqueId" value="@TempData.Peek("UniqueId")" class="form-control" readonly />
                 <span asp-validation-for="UniqueId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="MapId" class="control-label"></label>
-                <input asp-for="MapId" class="form-control" />
+                <input asp-for="MapId" class="form-control" autofocus />
                 <span asp-validation-for="MapId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="Rural" class="control-label"></label>
                 <input asp-for="Rural" class="form-control" />
                 <span asp-validation-for="Rural" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="Dls" class="control-label"></label>
                 <input asp-for="Dls" class="form-control" />
                 <span asp-validation-for="Dls" class="text-danger"></span>
             </div>
-            <label class="font-weight-bold">Location: </label>
-            <div class="d-flex">
-                <div class="form-group ml-3">
-                    <label asp-for="LocationLat" class="control-label"></label>
-                    <input asp-for="LocationLat" class="form-control" />
-                    <span asp-validation-for="LocationLat" class="text-danger"></span>
-                </div>
-                <div class="form-group ml-3">
-                    <label asp-for="LocationLong" class="control-label"></label>
-                    <input asp-for="LocationLong" class="form-control" />
-                    <span asp-validation-for="LocationLong" class="text-danger"></span>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="font-weight-bold">Location: </label>
+                <div class="d-flex">
+                    <div class="ml-3">
+                        <label asp-for="LocationLat" class="control-label"></label>
+                        <input asp-for="LocationLat" class="form-control" />
+                        <span asp-validation-for="LocationLat" class="text-danger"></span>
+                    </div>
+                    <div class="ml-3">
+                        <label asp-for="LocationLong" class="control-label"></label>
+                        <input asp-for="LocationLong" class="form-control" />
+                        <span asp-validation-for="LocationLong" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="Address" class="control-label"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="ZipCode" class="control-label"></label>
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="Country" class="control-label"></label>
                 <select id="country-dd" asp-for="Country" asp-items="Html.GetEnumSelectList<Countries>()" class="form-control">
-                    <option value="None" selected disabled>Select counrty</option>
+                    <option value="" selected disabled>Select counrty</option>
                 </select>
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="State" class="control-label"></label>
-                <select id="state-dd" asp-for="State" class="form-control"></select>
+                <select id="state-dd" asp-for="State" class="form-control" disabled></select>
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="CompanyId" class="control-label"></label>
-                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId">
+                    <option value="" selected disabled>Select Company</option>
+                </select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="OperatingAreaId" class="control-label"></label>
-                <select asp-for="OperatingAreaId" class="form-control" asp-items="ViewBag.OperatingAreaId"></select>
+                <select asp-for="OperatingAreaId" class="form-control" asp-items="ViewBag.OperatingAreaId">
+                    <option value="" selected disabled>Select operating area</option>
+                </select>
+                <span asp-validation-for="OperatingAreaId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="FieldId" class="control-label"></label>
-                <select asp-for="FieldId" class="form-control" asp-items="ViewBag.FieldId"></select>
+                <select asp-for="FieldId" class="form-control" asp-items="ViewBag.FieldId">
+                    <option value="" selected disabled>Select feilds</option>
+                </select>
+                <span asp-validation-for="FieldId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6">
                 <label asp-for="PropertyId" class="control-label"></label>
-                <select asp-for="PropertyId" class="form-control" asp-items="ViewBag.PropertyId"></select>
+                <select asp-for="PropertyId" class="form-control" asp-items="ViewBag.PropertyId">
+                    <option value="" selected disabled>Select property</option>
+                </select>
+                <span asp-validation-for="PropertyId" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label" hidden>
-                    <input class="form-check-input" asp-for="IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label" hidden></label>
-                <input asp-for="CreatedOn" value="@ViewData["CreatedOn"]" class="form-control" hidden />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="UpdatedOn" class="control-label"></label>
-                <input asp-for="UpdatedOn" class="form-control" />
-                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group col-lg-4 col-md-6 form-actions d-flex">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="reset" value="Reset" class="btn btn-outline-primary" />
+                <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group form-check" hidden>
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="IsActive" checked /> @Html.DisplayNameFor(model => model.IsActive)
+            </label>
+        </div>
+        <div class="form-group" hidden>
+            <label asp-for="CreatedOn" class="control-label"></label>
+            <input asp-for="CreatedOn" value="@ViewData["CreatedOn"]" class="form-control" />
+            <span asp-validation-for="CreatedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group" hidden>
+            <label asp-for="UpdatedOn" class="control-label"></label>
+            <input asp-for="UpdatedOn" class="form-control" />
+            <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+        </div>
+    </form>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+
 </div>
 
 @section Scripts {
@@ -120,13 +136,15 @@
         $(document).ready(function () {
             $("#country-dd").on("change", function () {
                 $list = $("#state-dd");
+                $("#state-dd").prop("disabled", false);
                 $.ajax({
                     url: "/PropertyInfoes/GetStates",
                     type: "GET",
-                    data: { id: $("#country-dd").val() }, //id of the country which is used to extract state.
+                    data: { id: $("#country-dd").val() }, //id of the country which is used to filter states.
                     traditional: true,
                     success: function (result) {
                         $list.empty();
+                        $list.append('<option value="" selected disabled>Select state</option>')
                         $.each(result, function (i, item) {
                             $list.append('<option value="' + item["id"] + '"> ' + item["stateName"] + ' </option>');
                         });
@@ -136,6 +154,9 @@
                     }
                 });
             });
+            $("form").on("reset", function () {
+                $("#state-dd").empty();
+            })
         });
     </script>
 

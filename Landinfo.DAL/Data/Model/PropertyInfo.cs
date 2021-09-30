@@ -23,7 +23,7 @@ namespace Landinfo.DAL.Data.Model
         public string Rural { get; set; }
 
         [Required]
-        [Display(Name = "Dominion Land Survey (DLS)")]
+        [Display(Name = "Dominion Land Survey (DLS)", ShortName = "DLS")]
         public string Dls { get; set; }
 
         [Required(ErrorMessage = "Please enter the Latitude value")]
@@ -49,7 +49,7 @@ namespace Landinfo.DAL.Data.Model
 
         [Required(ErrorMessage = "Please select a State/Province")]
         [Display(Name = "State/Province")]
-        public States State { get; set; }
+        public int State { get; set; }
         
         [Required(ErrorMessage = "Please select Company")]
         [Display(Name = "Company")]
@@ -95,9 +95,5 @@ namespace Landinfo.DAL.Data.Model
         [Display(Name = "India")] IN = 101,
         [Display(Name = "United Kingdom")] GB = 232,
         [Display(Name = "United States of America")] US = 233
-    }
-
-    public enum States
-    {
     }
 }

@@ -61,7 +61,7 @@ namespace Landinfo.Controllers
         // GET: PropertyInfoes/Create
         public IActionResult Create()
         {
-            ViewData["UniqueId"] = (long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+            TempData["UniqueId"] = ((long)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds).ToString();
             ViewData["CreatedOn"] = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName");
             ViewData["FieldId"] = new SelectList(_context.Fields, "Id", "FieldName");
@@ -103,6 +103,7 @@ namespace Landinfo.Controllers
             {
                 return NotFound();
             }
+            ViewData["State"] = new SelectList(_context.States.Where(s => s.CountryId == ((int)propertyInfo.Country)), "Id", "StateName", propertyInfo.State);
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CompanyName", propertyInfo.CompanyId);
             ViewData["FieldId"] = new SelectList(_context.Fields, "Id", "FieldName", propertyInfo.FieldId);
             ViewData["OperatingAreaId"] = new SelectList(_context.OperatingAreas, "Id", "AreaName", propertyInfo.OperatingAreaId);
